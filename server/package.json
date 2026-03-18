@@ -9,10 +9,8 @@
     "test": "node --test tests/server.test.js"
   },
   "dependencies": {
-    "ws": "^8.18.0",
-    "uuid": "^11.1.0"
+    "ws": "^8.18.0"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0"
   },
