@@ -1,0 +1,213 @@
+/* ── Reset & base ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f0f10;
+  --surface: #1c1c1f;
+  --surface2: #2a2a2e;
+  --accent: #7c5cfc;
+  --accent-hover: #6a4de8;
+  --danger: #e04444;
+  --danger-hover: #c73838;
+  --text: #f0f0f4;
+  --text-muted: #8a8a96;
+  --success: #3ecf8e;
+  --border: #313137;
+  --radius: 10px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  width: 320px;
+  min-height: 200px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ── Layout ──────────────────────────────────────────────────────────── */
+.container { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Header ──────────────────────────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo { width: 32px; height: 32px; border-radius: 8px; }
+h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+
+/* ── Status bar ──────────────────────────────────────────────────────── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  border-radius: 20px;
+  background: var(--surface);
+  width: fit-content;
+}
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+}
+.status-bar.connected .status-dot { background: var(--success); }
+.status-bar.connected #status-text { color: var(--success); }
+.status-bar.disconnected .status-dot { background: var(--danger); }
+
+/* ── Cards ───────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+h2 { font-size: 14px; font-weight: 600; }
+.hint { font-size: 12px; color: var(--text-muted); }
+.hint.center { text-align: center; }
+
+/* ── Divider ─────────────────────────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Input row ───────────────────────────────────────────────────────── */
+.input-row { display: flex; gap: 8px; }
+input[type="text"] {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  outline: none;
+  transition: border-color .2s;
+}
+input[type="text"]:focus { border-color: var(--accent); }
+input[type="text"]::placeholder { letter-spacing: 1px; font-weight: 400; color: var(--text-muted); }
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary  { background: var(--accent);  color: #fff; width: 100%; }
+.btn-primary:hover:not(:disabled)  { background: var(--accent-hover); }
+
+.btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover:not(:disabled) { background: var(--border); }
+
+.btn-danger { background: var(--danger); color: #fff; width: 100%; }
+.btn-danger:hover:not(:disabled) { background: var(--danger-hover); }
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 4px;
+  transition: color .2s;
+}
+.btn-icon:hover { color: var(--text); }
+
+/* ── Error message ───────────────────────────────────────────────────── */
+.error { color: var(--danger); font-size: 12px; }
+
+/* ── Party section ───────────────────────────────────────────────────── */
+#section-party {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.party-banner {
+  background: linear-gradient(135deg, #2a1f6b 0%, #1c1c2e 100%);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+}
+.party-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+
+.code-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+#party-code-display {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 6px;
+  color: #fff;
+}
+
+.copy-confirm {
+  font-size: 11px;
+  color: var(--success);
+  margin-top: 2px;
+  display: block;
+}
+
+/* ── Party info ──────────────────────────────────────────────────────── */
+.party-info {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.info-row { display: flex; align-items: center; justify-content: space-between; }
+.info-label { font-size: 12px; color: var(--text-muted); }
+
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge-host    { background: rgba(124,92,252,.25); color: var(--accent); }
+.badge-guest   { background: rgba(62,207,142,.15); color: var(--success); }
+.badge-neutral { background: var(--surface2); color: var(--text-muted); }
+
+/* ── Utility ─────────────────────────────────────────────────────────── */
+.hidden { display: none !important; }
